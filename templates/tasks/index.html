@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task List</title>
+    <link rel="stylesheet" href="{% static 'hello/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task List</h1>
+
+      <form method="post" class="card form">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="a">Add Task</button>
+      </form>
+      <ul class="card form">
+        {% for todo in todos %}
+        <li class="card">
+          {{todo.name}} - {{todo.deadline}}-{%if todo.complete%}Completed
+          {%else%}Not Completed {% endif %}
+          <form method="post" action="{% url 'delete_task' todo.id %}">
+            {% csrf_token %}
+            <button type="submit" class="a">Delete Task</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
