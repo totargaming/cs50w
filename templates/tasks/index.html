@@ -10,7 +10,7 @@
       <h1>Task List</h1>
 
       <form method="post" class="card form">
-        {% csrf_token %} {{ form.as_p }}
+        {% csrf_token %} {{ form.as_table }}
         <button type="submit" class="a">Add Task</button>
       </form>
       <ul class="card form">
